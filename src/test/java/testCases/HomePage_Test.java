@@ -309,13 +309,12 @@ public class HomePage_Test extends BrowserActions {
 
         typingToText_name("property_name", "Testing");
         Thread.sleep(2000);
-//       WebElement star = driver.findElement(By.cssSelector("input[name ='star_rating'],[value ='5']"));
-//       star.click();
-
-//        List<WebElement> stars = driver.findElements(By.cssSelector("input[name='star_rating']"));
-//        stars.get(2).click();  // 0-based index: this clicks the 3rd star
+        //star radio button
        WebElement star = driver.findElement(By.xpath(".//label[@class='wizard-star-rating' and input[@value='3']]//i"));
        star.click();
+
+       WebElement radio =driver.findElement(By.xpath(".//label[@type ='radio' and input[@value ='yes']]"));
+       radio.click();
 
 
 
