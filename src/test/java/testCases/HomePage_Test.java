@@ -281,8 +281,10 @@ public class HomePage_Test extends BrowserActions {
         Thread.sleep(2000);
         clickable(".//button[@class='registation_button']");
         Thread.sleep(20000);
+        //Manually OTP captured by user and proceed then button is automated
+
         clickable(".//button[text()='proceed']");
-        //submit button need to add and before that wait have to put because OTP will be placed manually as OTP fetch is not succeeding
+
 
         Thread.sleep(2000);
         clickable(".//h6[text()='Hotel']");
@@ -312,8 +314,9 @@ public class HomePage_Test extends BrowserActions {
 
 //        List<WebElement> stars = driver.findElements(By.cssSelector("input[name='star_rating']"));
 //        stars.get(2).click();  // 0-based index: this clicks the 3rd star
-        WebElement star = driver.findElement(By.xpath("//*[@id=\"pane-3\"]/div/div[1]/div/div[2]/div/div[2]/div/div/div[2]/div[2]/div/label[3]/input"));
-        star.click();
+       WebElement star = driver.findElement(By.xpath(".//label[@class='wizard-star-rating' and input[@value='3']]//i"));
+       star.click();
+
 
 
     }
