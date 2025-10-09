@@ -1,0 +1,23 @@
+package baseClass;
+
+import org.openqa.selenium.By;
+
+public class BrowserActions extends BrowserSetUp {
+
+    public void clickable(String locators) {
+        driver.findElement(By.xpath(locators)).click();
+    }
+
+    public void typingToText_id(String locators, String texts) {
+        driver.findElement(By.id(locators)).sendKeys(texts);
+    }
+
+       public void TypingToText_id(String locators) {
+        driver.findElement(By.id(locators));
+    }
+
+    public void typingToText_name(String locators, String texts) {
+        driver.findElement(By.name(locators)).sendKeys(texts);
+    }
+
+}
