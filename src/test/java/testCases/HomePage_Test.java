@@ -309,14 +309,17 @@ public class HomePage_Test extends BrowserActions {
 
         typingToText_name("property_name", "Testing");
         Thread.sleep(2000);
-        //star radio button
-       WebElement star = driver.findElement(By.xpath(".//label[@class='wizard-star-rating' and input[@value='3']]//i"));
-       star.click();
+        //what’s the star rating of your Property?
 
-       WebElement radio =driver.findElement(By.xpath(".//label[@type ='radio' and input[@value ='yes']]"));
-       radio.click();
+        WebElement star = driver.findElement(By.xpath(".//label[@class='wizard-star-rating' and input[@value='3']]//i"));
+        star.click();
 
-
+        Thread.sleep(2000);
+        // are you a property management company or part of a group?*
+        WebElement radioVisual = driver.findElement(By.xpath("//input[@value='yes']/following-sibling::span[contains(@class, 'wizard-form-radio-mark')] "));
+        radioVisual.click();
+        Thread.sleep(2000);
+        clickable(".//button[text()='Next']/following-sibling::div[contains@class,'wizard-btn-group']");
 
     }
 
