@@ -319,16 +319,40 @@ public class HomePage_Test extends BrowserActions {
         WebElement radioVisual = driver.findElement(By.xpath("//input[@value='yes']/following-sibling::span[contains(@class, 'wizard-form-radio-mark')] "));
         radioVisual.click();
         Thread.sleep(2000);
-        clickable(".//button[text()='Next']/following-sibling::div[contains@class,'wizard-btn-group']");
+        //  Next button
+        clickable("//*[@id=\"pane-3\"]//button[contains(@class, \"wizard-btn-next\")]");
+
+        //Facilities at your property
+        WebElement parking = driver.findElement(By.xpath(".//input[@name ='facilities[]']/following-sibling::span[@class='wizard-facility-list-item']"));
+        parking.click();
+
+        Thread.sleep(4000);
+        WebElement nextButton = driver.findElement(By.xpath("//*[@id=\"pane-4\"]//button[contains(@class, 'wizard-btn-next')]"));
+        nextButton.click();
+        //Amenities at your property
+        Thread.sleep(2000);
+        WebElement Wifi = driver.findElement(By.xpath("//label[contains(., 'Wifi')]/span[@class='wizard-form-checkmark']"));
+        Wifi.click();
+        //Next button
+        clickable("//*[@id=\"pane-5\"]//button[contains(@class, \"wizard-btn-next\")]");
+        //Guest Policies
+        //check-in Time
+        driver.findElement(By.name("check_in_time")).click();
+        Thread.sleep(2000);
+        WebElement check_in_Time = driver.findElement(By.xpath(".//input[@class='numInput flatpickr-hour']"));
+        Actions time = new Actions(driver);
+        time.moveToElement(check_in_Time).sendKeys("01").sendKeys(Keys.TAB).sendKeys("01").sendKeys(Keys.ENTER).build().perform();
+        //check-OUT TIME
+        driver.findElement(By.name("check_out_time")).click();
+        Thread.sleep(2000);
+        WebElement check_Out_Time = driver.findElement((By.xpath("//input[contains(@class, 'flatpickr-hour') and @aria-label='Hour']")));
+        check_Out_Time.clear();
+        check_Out_Time.sendKeys("10");
+      //  time.moveToElement(check_Out_Time).sendKeys("02").sendKeys(Keys.TAB).sendKeys("02").sendKeys(Keys.ENTER).build().perform();
+
 
     }
-
 }
-
-
-
-
-
 
 
 
