@@ -243,7 +243,7 @@ public class HomePage_Test extends BrowserActions {
     }
 
     @Test
-    public void Pricing_Test() throws MailosaurException, IOException, InterruptedException { //issue
+    public void Pricing_Test() throws InterruptedException { //issue
         clickable(".//a[text()='Pricing']");
         clickable(".//a[@href='https://www.syncinns.com/for-hotel-pricing']");
         clickable(".//a[@href='https://www.syncinns.com/hotel-pricing-qoute']");
@@ -344,15 +344,43 @@ public class HomePage_Test extends BrowserActions {
         time.moveToElement(check_in_Time).sendKeys("01").sendKeys(Keys.TAB).sendKeys("01").sendKeys(Keys.ENTER).build().perform();
         //check-OUT TIME
         driver.findElement(By.name("check_out_time")).click();
-        Thread.sleep(2000);
-        WebElement check_Out_Time = driver.findElement((By.xpath("//input[contains(@class, 'flatpickr-hour') and @aria-label='Hour']")));
-        check_Out_Time.clear();
-        check_Out_Time.sendKeys("10");
-      //  time.moveToElement(check_Out_Time).sendKeys("02").sendKeys(Keys.TAB).sendKeys("02").sendKeys(Keys.ENTER).build().perform();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
+        //WebElement check_Out_Time = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[5]/div//div[(@class='flatpickr-calendar hasTime noCalendar animate arrowLeft arrowTop open')]//div[contains(@class, 'flatpickr-time')]//div[@class='numInputWrapper']/input[@class='numInput flatpickr-hour']")));
+        WebElement check_Out_Time = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[5]/div/div[1]/input")));
+        time.moveToElement(check_Out_Time).sendKeys("02").sendKeys(Keys.TAB).sendKeys("02").sendKeys(Keys.ENTER).build().perform();
+        Thread.sleep(10000);
+        WebElement Pet_Allowed = driver.findElement(By.xpath(".//input[@name='pet_allowed' and @value='yes']/following-sibling::span[@class='wizard-form-radio-mark']"));
+        Pet_Allowed.click();
+        WebElement staff_speak = driver.findElement(By.xpath(".//input[@name='staff_language[]' and @value='others']/following-sibling::span[text()='Others']"));
+        staff_speak.click();
+        driver.findElement(By.xpath(".//*[@id=\"pane-6\"]//button[@class='wizard-btn-next']")).click();
+        Thread.sleep(2000);
+        //Accommodation Details
+        driver.findElement(By.xpath(".//*[@id=\"pane-7\"]//span[contains(text(),'suite')]")).click();
+        Thread.sleep(2000);
+//*[@id="pane-7"]/div/div/div/div[3]/div/div/div/div/div[1]/div[2]/div/div/div[1]/button[2]
+       // List<WebElement> allplusbutton = driver.findElements(By.xpath(".//*[id=\"pane-7\"]//button[@class='count-selector-button count-selector-button-increase countIncreaseBtn']"));
+        List<WebElement> allplusbutton= driver.findElements(By.xpath(".//button[@class='count-selector-button count-selector-button-increase countIncreaseBtn']//i[@class='fa-solid fa-plus']"));
+        for (int i = 0; i < 5; i++) {
+            allplusbutton.get(i).click();
+            Thread.sleep(500);
+        }
+
+        // WebElement Number_of_Beds = driver.findElement(By.xpath(".//input[@class='count-selector-count countValue is-valid' and @name='rooms[0][no_of_bed]']"));
+//        Number_of_Beds.click();
+//        Number_of_Beds.sendKeys("10");
+//        driver.findElement((By.xpath(".//input[@class='count-selector-count countValue is-valid' and @name='rooms[0][guest_capacity]']"))).sendKeys("12");
+//        WebElement Room_View = driver.findElement(By.xpath(".//select[@class='price-display-value is-valid' and @name='rooms[0][room_view]']"));
+//        Select select_view = new Select(Room_View);
+//        select_view.selectByValue("sea View");
+//        driver.findElement(By.xpath(".//input[@class='price-display-value is-valid' and @name='rooms[0][stock]']")).sendKeys("100");
+//        driver.findElement(By.xpath(".//input[@class='price-display-value is-valid' and @name ='rooms[0][swd_cost]']")).sendKeys("120");
+//        driver.findElement(By.xpath(".//input[@class='price-display-value is-valid' and @name ='rooms[0][swe_cost]']")).sendKeys("120");
 
     }
 }
+
 
 
 

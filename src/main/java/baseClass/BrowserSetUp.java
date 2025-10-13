@@ -15,6 +15,7 @@ public class BrowserSetUp {
     //    driver = new FirefoxDriver();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
+       // driver.get("https://www.syncinns.com/");
         driver.get("https://www.syncinns.com/");
 
     }
