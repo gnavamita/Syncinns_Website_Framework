@@ -1,17 +1,12 @@
 package testCases;
 
+import HomePage.RequestADemo_Form;
 import baseClass.BrowserActions;
-import com.mailosaur.MailosaurClient;
-import com.mailosaur.MailosaurException;
 import com.mailosaur.models.*;
-import com.mailosaur.models.Message;
-import com.mailosaur.models.MessageSearchParams;
-import com.mailosaur.models.SearchCriteria;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -20,21 +15,11 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.security.Key;
 import java.util.regex.*;
-import java.io.IOException;
 import java.time.Duration;
-import java.time.Instant;
-import java.util.Date;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
 
 public class HomePage_Test extends BrowserActions {
-
+    RequestADemo_Form requestADemoForm = new RequestADemo_Form();
 
     @BeforeMethod
     public void openingBrowser() {
@@ -48,21 +33,9 @@ public class HomePage_Test extends BrowserActions {
 
     @Test
     public void Request_a_Demo_Test() throws InterruptedException { // positive scenario
-        clickable(".//span[text()='Request a Demo']");
-        typingToText_id("nameModern", "Test");
-        typingToText_id("finalEmailModern", "navamitaghosh30@gmail.com");
-        typingToText_id("mobile_code", "8788473203");
-        WebElement BusinessType_dropdown = driver.findElement(By.id("employeeModern"));
-        Select BusinessType = new Select(BusinessType_dropdown);
-        BusinessType.selectByIndex(1);
-        typingToText_id("propertyModern", "Test");
-        WebElement Number_Of_Rooms_dropdown = driver.findElement(By.id("roomsModern"));
-        Select Number_Of_Rooms = new Select(Number_Of_Rooms_dropdown);
-        Number_Of_Rooms.selectByValue("100");
-        clickable("//*[@id=\"step3-form-modern\"]/div[6]/div[1]/div/input[2]");
-        clickable("/html/body/div[4]/div[2]/div/div[2]/div/span[19]");
-        typingToText_id("timeModern", "1111");
-        clickable(".//button[text()='Submit']");
+        requestADemoForm.click_On_Request_A_Demo_Button();
+        requestADemoForm.Fill_Book_A_Free_Demo_Form("Test","navamitaghosh30@gmail.com","8788473203","Hotelier","Test","100","October 29, 2025","1111");
+        requestADemoForm.click_On_SUbmit_Button();
     }
 
     @Test
@@ -77,7 +50,7 @@ public class HomePage_Test extends BrowserActions {
     }
 
     @Test
-    public void Syncinns_AI_Test() { // positive scenario
+    public void Syncinns_AI_Test() throws InterruptedException { // positive scenario
         clickable(".//a[text()='Syncinns AI']");
         clickable(".//a[text()='Upgrade with AI']");
         typingToText_id("nameModern", "Test");
@@ -90,9 +63,9 @@ public class HomePage_Test extends BrowserActions {
         WebElement Number_Of_Rooms_dropdown = driver.findElement(By.id("roomsModern"));
         Select Number_Of_Rooms = new Select(Number_Of_Rooms_dropdown);
         Number_Of_Rooms.selectByValue("100");
-        clickable("//*[@id=\"step3-form-modern\"]/div[6]/div[1]/div/input[2]");
-        clickable("/html/body/div[4]/div[2]/div/div[2]/div/span[19]");
-        typingToText_id("timeModern", "1111");
+        Thread.sleep(2000);
+        typingToText_xpath(" //*[@id=\"step3-form-modern\"]/div[6]/div[1]/div/input[2]", "October 29, 2025");
+        typingToText_xpath(".//input[@id='timeModern' and @name='time']", "1111");
         clickable(".//button[text()='Submit']");
     }
 
@@ -262,10 +235,8 @@ public class HomePage_Test extends BrowserActions {
         Select Number_Of_Rooms = new Select(Number_Of_Rooms_dropdown);
         Number_Of_Rooms.selectByVisibleText("51 - 100");
         Thread.sleep(2000);
-        clickable("//*[@id=\"step3-form-modern\"]/div[6]/div[1]/div/input[2]");
-        Thread.sleep(2000);
-        clickable("/html/body/div[4]/div[2]/div/div[2]/div/span[32]");
-        typingToText_id("timeModern", "1111");
+        typingToText_xpath("//*[@id=\"step3-form-modern\"]/div[6]/div[1]/div/input[2]", "October 29, 2025");
+        typingToText_xpath(".//input[@id='timeModern' and @name='time']", "1111");
         clickable(".//button[text()='Submit']");
     }
 
@@ -311,8 +282,7 @@ public class HomePage_Test extends BrowserActions {
         Thread.sleep(2000);
         //what’s the star rating of your Property?
 
-        WebElement star = driver.findElement(By.xpath(".//label[@class='wizard-star-rating' and input[@value='3']]//i"));
-        star.click();
+        clickable(".//label[@class='wizard-star-rating' and input[@value='3']]//i");
 
         Thread.sleep(2000);
         // are you a property management company or part of a group?*
@@ -323,16 +293,14 @@ public class HomePage_Test extends BrowserActions {
         clickable("//*[@id=\"pane-3\"]//button[contains(@class, \"wizard-btn-next\")]");
 
         //Facilities at your property
-        WebElement parking = driver.findElement(By.xpath(".//input[@name ='facilities[]']/following-sibling::span[@class='wizard-facility-list-item']"));
-        parking.click();
+        clickable(".//input[@name ='facilities[]']/following-sibling::span[@class='wizard-facility-list-item']");
 
         Thread.sleep(4000);
-        WebElement nextButton = driver.findElement(By.xpath("//*[@id=\"pane-4\"]//button[contains(@class, 'wizard-btn-next')]"));
-        nextButton.click();
+        clickable("//*[@id=\"pane-4\"]//button[contains(@class, 'wizard-btn-next')]");
+
         //Amenities at your property
         Thread.sleep(2000);
-        WebElement Wifi = driver.findElement(By.xpath("//label[contains(., 'Wifi')]/span[@class='wizard-form-checkmark']"));
-        Wifi.click();
+        clickable("//*[@id=\"pane-5\"]/div/div[1]/div/div[2]/div/div/div/div/ul/li[11]/div/label/span[1]");
         //Next button
         clickable("//*[@id=\"pane-5\"]//button[contains(@class, \"wizard-btn-next\")]");
         //Guest Policies
@@ -354,31 +322,32 @@ public class HomePage_Test extends BrowserActions {
         Pet_Allowed.click();
         WebElement staff_speak = driver.findElement(By.xpath(".//input[@name='staff_language[]' and @value='others']/following-sibling::span[text()='Others']"));
         staff_speak.click();
-        driver.findElement(By.xpath(".//*[@id=\"pane-6\"]//button[@class='wizard-btn-next']")).click();
+        clickable(".//*[@id=\"pane-6\"]//button[@class='wizard-btn-next']");
         Thread.sleep(2000);
         //Accommodation Details
-        driver.findElement(By.xpath(".//*[@id=\"pane-7\"]//span[contains(text(),'suite')]")).click();
+        clickable(".//*[@id=\"pane-7\"]//span[contains(text(),'Queen size bedroom')]");
         Thread.sleep(2000);
-//*[@id="pane-7"]/div/div/div/div[3]/div/div/div/div/div[1]/div[2]/div/div/div[1]/button[2]
-       // List<WebElement> allplusbutton = driver.findElements(By.xpath(".//*[id=\"pane-7\"]//button[@class='count-selector-button count-selector-button-increase countIncreaseBtn']"));
-        List<WebElement> allplusbutton= driver.findElements(By.xpath(".//button[@class='count-selector-button count-selector-button-increase countIncreaseBtn']//i[@class='fa-solid fa-plus']"));
-        for (int i = 0; i < 5; i++) {
-            allplusbutton.get(i).click();
-            Thread.sleep(500);
-        }
+        typingToText_xpath("//*[@id=\"pane-7\"]//input[@name='rooms[0][no_of_bed]']", "100");
 
-        // WebElement Number_of_Beds = driver.findElement(By.xpath(".//input[@class='count-selector-count countValue is-valid' and @name='rooms[0][no_of_bed]']"));
-//        Number_of_Beds.click();
-//        Number_of_Beds.sendKeys("10");
-//        driver.findElement((By.xpath(".//input[@class='count-selector-count countValue is-valid' and @name='rooms[0][guest_capacity]']"))).sendKeys("12");
-//        WebElement Room_View = driver.findElement(By.xpath(".//select[@class='price-display-value is-valid' and @name='rooms[0][room_view]']"));
-//        Select select_view = new Select(Room_View);
-//        select_view.selectByValue("sea View");
-//        driver.findElement(By.xpath(".//input[@class='price-display-value is-valid' and @name='rooms[0][stock]']")).sendKeys("100");
-//        driver.findElement(By.xpath(".//input[@class='price-display-value is-valid' and @name ='rooms[0][swd_cost]']")).sendKeys("120");
-//        driver.findElement(By.xpath(".//input[@class='price-display-value is-valid' and @name ='rooms[0][swe_cost]']")).sendKeys("120");
+        //*[@id="pane-7"]/div/div/div/div[3]/div/div/div/div/div[1]/div[2]/div/div/div[1]/input
+        typingToText_xpath("//*[@id=\"pane-7\"]//input[@name='rooms[0][guest_capacity]']", "100");
+        WebElement Room_View = driver.findElement(By.xpath(".//*[@id=\"pane-7\"]//select[@name='rooms[0][room_view]']"));
+        Select select_view = new Select(Room_View);
+        select_view.selectByVisibleText("sea View");
+        typingToText_xpath(".//input[@class='price-display-value is-valid' and @name='rooms[0][stock]']", "100");
+        typingToText_xpath(".//input[@class='price-display-value is-valid' and @name ='rooms[0][swd_cost]']", "120");
+        typingToText_xpath(".//input[@class='price-display-value is-valid' and @name ='rooms[0][swe_cost]']", "120");
+        //Next button
+        clickable("//*[@id=\"pane-7\"]//button[@class='wizard-btn-next']");
+        Thread.sleep(20000);
+        clickable("//*[@id=\"pane-8\"]//button[@class='wizard-btn-next']");
+        typingToText_name("referral_code", "Ref1234");
+        //submit button
+        clickable(".//*[@id=\"pane-9\"]//button[@class='wizard-btn-next']");
+
 
     }
+
 }
 
 

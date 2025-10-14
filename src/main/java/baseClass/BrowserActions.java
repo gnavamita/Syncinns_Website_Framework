@@ -12,8 +12,8 @@ public class BrowserActions extends BrowserSetUp {
         driver.findElement(By.id(locators)).sendKeys(texts);
     }
 
-       public void TypingToText_id(String locators) {
-        driver.findElement(By.id(locators));
+       public void typingToText_xpath(String locators, String texts) {
+        driver.findElement(By.xpath(locators)).sendKeys(texts);
     }
 
     public void typingToText_name(String locators, String texts) {
