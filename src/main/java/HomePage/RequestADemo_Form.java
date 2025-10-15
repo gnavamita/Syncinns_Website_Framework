@@ -27,20 +27,6 @@ BrowserActions browserActions = new BrowserActions();
         browserActions.typingToText_xpath(".//*[@id=\"step3-form-modern\"]/div[6]/div[1]/div/input[2]", Date);
         browserActions.typingToText_xpath(".//input[@id='timeModern' and @name='time']", Time);
     }
-    public void Fill_Book_A_Free_Demo_Form(){
-        browserActions.typingToText_id("nameModern", "Test");
-        browserActions.typingToText_id("finalEmailModern", "navamitaghosh30@gmail.com");
-        browserActions.typingToText_id("mobile_code", "8788473203");
-        WebElement BusinessType_dropdown = driver.findElement(By.id("employeeModern"));
-        Select BusinessType = new Select(BusinessType_dropdown);
-        BusinessType.selectByIndex(1);
-        browserActions.typingToText_id("propertyModern", "Test");
-        WebElement Number_Of_Rooms_dropdown = driver.findElement(By.id("roomsModern"));
-        Select Number_Of_Rooms = new Select(Number_Of_Rooms_dropdown);
-        Number_Of_Rooms.selectByValue("100");
-        browserActions.typingToText_xpath(".//*[@id=\"step3-form-modern\"]/div[6]/div[1]/div/input[2]", "October 29, 2025");
-        browserActions.typingToText_xpath(".//input[@id='timeModern' and @name='time']", "1111");
-    }
 
     public void click_On_SUbmit_Button(){
         browserActions.clickable(".//button[text()='Submit']");
