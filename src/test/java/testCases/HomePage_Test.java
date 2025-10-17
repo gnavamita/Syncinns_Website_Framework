@@ -2,7 +2,6 @@ package testCases;
 
 import HomePage.RequestADemo_Form;
 import baseClass.BrowserActions;
-import com.mailosaur.models.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -15,7 +14,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.regex.*;
 import java.time.Duration;
 
 public class HomePage_Test extends BrowserActions {
@@ -31,10 +29,12 @@ public class HomePage_Test extends BrowserActions {
         browserClose();
     }
 
+
     @Test
-    public void Request_a_Demo_Test() throws InterruptedException { // positive scenario
+    public void Request_a_Demo_Test() { // positive scenario
+        // clickable(".//span[text()='Request a Demo']");
         requestADemoForm.click_On_Request_A_Demo_Button();
-        requestADemoForm.Fill_Book_A_Free_Demo_Form("Test","navamitaghosh30@gmail.com","8788473203","Hotelier","Test","100","October 29, 2025","1111");
+        requestADemoForm.Fill_Book_A_Free_Demo_Form("Test", "navamitaghosh30@gmail.com", "8788473203", "Hotelier", "Test", "100", "October 29, 2025", "1111");
         requestADemoForm.click_On_SUbmit_Button();
     }
 
@@ -216,7 +216,7 @@ public class HomePage_Test extends BrowserActions {
     }
 
     @Test
-    public void Pricing_Test() throws InterruptedException { //issue
+    public void Pricing_Hotel() throws InterruptedException { //issue
         clickable(".//a[text()='Pricing']");
         clickable(".//a[@href='https://www.syncinns.com/for-hotel-pricing']");
         clickable(".//a[@href='https://www.syncinns.com/hotel-pricing-qoute']");
@@ -242,10 +242,11 @@ public class HomePage_Test extends BrowserActions {
 
     @Test
     //Partner with Us-->List your Property
-    public void Partner_With_Us_Test() throws Exception {
+    public void Partner_With_Us_List_Your_Property() throws Exception {
         clickable(".//a[@href='https://www.syncinns.com/partner-with-us']");
         clickable(".//a[@href='https://www.syncinns.com/list-your-property']");
         clickable(".//a[@href='https://www.syncinns.com/registration']");
+
         typingToText_name("name", "Testing");
         typingToText_name("email", "air-lunch@ctwouvya.mailosaur.net");
         typingToText_id("mobile_code", "8788473203");
@@ -253,7 +254,6 @@ public class HomePage_Test extends BrowserActions {
         clickable(".//button[@class='registation_button']");
         Thread.sleep(20000);
         //Manually OTP captured by user and proceed then button is automated
-
         clickable(".//button[text()='proceed']");
 
 
@@ -344,9 +344,47 @@ public class HomePage_Test extends BrowserActions {
         typingToText_name("referral_code", "Ref1234");
         //submit button
         clickable(".//*[@id=\"pane-9\"]//button[@class='wizard-btn-next']");
+    }
 
+    @Test
+    public void Partner_With_Us_For_Affiliates() throws InterruptedException {
+        clickable(".//a[@href='https://www.syncinns.com/partner-with-us']");
+        clickable(".//a[@href='https://www.syncinns.com/affiliate-program']");
+        clickable(".//a[@href='#affiliate-join-form']");
+        Thread.sleep(2000);
+        typingToText_name("first_name", "Testing");
+        typingToText_name("last_name", "Testing");
+        typingToText_name("work_email", "Testing@gmail.com");
+        typingToText_name("company_name", "ABC Hotel");
+        typingToText_name("message", "Hi, this is a Test!");
+        clickable(".//button[@type='submit']");
+    }
+
+    @Test
+    public void Partner_With_Us_For_Travel_Companies() throws InterruptedException {
+        clickable(".//a[@href='https://www.syncinns.com/partner-with-us']");
+        clickable(".//a[@href='https://www.syncinns.com/buy-from-marketplace']");
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        WebElement scrolldown = driver.findElement(By.xpath(".//h5[text()='Help us with your details']"));
+        js.executeScript("arguments[0].scrollIntoView();", scrolldown);
+        Thread.sleep(2000);
+        typingToText_name("first_name", "first");
+        Thread.sleep(2000);
+        typingToText_name("last_name", "last");
+        Thread.sleep(2000);
+        typingToText_name("email", "work@gmail.com");
+        typingToText_id("mobile_code", "8788473203");
+        typingToText_id("businessName", "business");
+        typingToText_id("businessEmail", "business@gmail.com");
+        typingToText_name("message","Hi, This is a Test!");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+        WebElement checkbox = driver.findElement(By.name("terms"));
+        checkbox.click();
+        System.out.println(checkbox.isSelected());
+        clickable(".//button[@class='btn common-bgBtn w-100 text-center align-items-center justify-content-center nesubbtn']");
 
     }
+
 
 }
 
