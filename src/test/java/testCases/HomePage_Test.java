@@ -35,7 +35,7 @@ public class HomePage_Test extends BrowserActions {
         // clickable(".//span[text()='Request a Demo']");
         requestADemoForm.click_On_Request_A_Demo_Button();
         requestADemoForm.Fill_Book_A_Free_Demo_Form("Test", "navamitaghosh30@gmail.com", "8788473203", "Hotelier", "Test", "100", "October 29, 2025", "1111");
-        requestADemoForm.click_On_SUbmit_Button();
+        requestADemoForm.click_On_Submit_Button();
     }
 
     @Test
@@ -216,26 +216,194 @@ public class HomePage_Test extends BrowserActions {
     }
 
     @Test
+    public void Tools_Room_Utilization_Calculator() throws InterruptedException {
+        WebElement Tools = driver.findElement(By.xpath(".//a[text()='Tools']"));
+        WebElement RoomUtilizationCalculator = driver.findElement(By.xpath(".//h3[@class='hotel-cardx-title' and normalize-space(text())='Room Utilization Calculator']"));
+        Actions action = new Actions(driver);
+        action.moveToElement(Tools).click(RoomUtilizationCalculator).build().perform();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        WebElement scrolldown = driver.findElement(By.xpath(".//h5[text()='Help us with your details']"));
+        js.executeScript("arguments[0].scrollIntoView();", scrolldown);
+        Thread.sleep(2000);
+        typingToText_name("first_name", "first");
+        Thread.sleep(2000);
+        typingToText_name("last_name", "last");
+        Thread.sleep(2000);
+        typingToText_name("email", "work@gmail.com");
+        typingToText_id("mobile_code", "8788473203");
+        typingToText_id("businessName", "business");
+        typingToText_id("businessEmail", "business@gmail.com");
+        typingToText_id("newmobile_code", "8788473203");
+        typingToText_id("location", "Kolkata");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+        WebElement checkbox = driver.findElement(By.name("terms"));
+        Thread.sleep(2000);
+        checkbox.click();
+        System.out.println(checkbox.isSelected());
+        clickable(".//button[@class='btn common-bgBtn w-100 text-center align-items-center justify-content-center nesubbtn']");
+    }
+
+    @Test
+    public void Tools_Revenue_Per_Room_Sold() throws InterruptedException {
+        WebElement Tools = driver.findElement(By.xpath(".//a[text()='Tools']"));
+        WebElement RevernuePerRoomSold = driver.findElement(By.xpath(".//h3[@class='hotel-cardx-title' and normalize-space(text())='Revenue Per Room Sold']"));
+        Actions action = new Actions(driver);
+        action.moveToElement(Tools).click(RevernuePerRoomSold).build().perform();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        WebElement scrolldown = driver.findElement(By.xpath(".//h5[text()='Help us with your details']"));
+        js.executeScript("arguments[0].scrollIntoView();", scrolldown);
+        Thread.sleep(2000);
+        typingToText_name("first_name", "first");
+        Thread.sleep(2000);
+        typingToText_name("last_name", "last");
+        Thread.sleep(2000);
+        typingToText_name("email", "work@gmail.com");
+        typingToText_id("mobile_code", "8788473203");
+        typingToText_id("businessName", "business");
+        typingToText_id("businessEmail", "business@gmail.com");
+        typingToText_id("newmobile_code", "8788473203");
+        typingToText_id("location", "Kolkata");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+        WebElement checkbox = driver.findElement(By.name("terms"));
+        Thread.sleep(2000);
+        checkbox.click();
+        System.out.println(checkbox.isSelected());
+        clickable(".//button[@class='btn common-bgBtn w-100 text-center align-items-center justify-content-center nesubbtn']");
+    }
+
+    @Test
+    public void Tools_Profitability_Per_Room_GOPPAR() throws InterruptedException {
+        WebElement Tools = driver.findElement(By.xpath(".//a[text()='Tools']"));
+        Thread.sleep(2000);
+        WebElement ProfitabilityPerRoomGOPPAR = driver.findElement(By.xpath(".//h3[@class='hotel-cardx-title' and normalize-space(text())='Profitability Per Room (GOPPAR)']"));
+        Actions action = new Actions(driver);
+        action.moveToElement(Tools).click(ProfitabilityPerRoomGOPPAR).build().perform();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        WebElement scrolldown = driver.findElement(By.xpath(".//h5[text()='Help us with your details']"));
+        js.executeScript("arguments[0].scrollIntoView();", scrolldown);
+        Thread.sleep(2000);
+        typingToText_name("first_name", "first");
+        Thread.sleep(2000);
+        typingToText_name("last_name", "last");
+        Thread.sleep(2000);
+        typingToText_name("email", "work@gmail.com");
+        typingToText_id("mobile_code", "8788473203");
+        typingToText_id("businessName", "business");
+        typingToText_id("businessEmail", "business@gmail.com");
+        typingToText_id("newmobile_code", "8788473203");
+        typingToText_id("location", "Kolkata");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+        WebElement checkbox = driver.findElement(By.name("terms"));
+        Thread.sleep(2000);
+        checkbox.click();
+        System.out.println(checkbox.isSelected());
+        clickable(".//button[@class='btn common-bgBtn w-100 text-center align-items-center justify-content-center nesubbtn']");
+    }
+
+    @Test
     public void Pricing_Hotel() throws InterruptedException { //issue
         clickable(".//a[text()='Pricing']");
         clickable(".//a[@href='https://www.syncinns.com/for-hotel-pricing']");
         clickable(".//a[@href='https://www.syncinns.com/hotel-pricing-qoute']");
-        typingToText_id("emailModern", "air-lunch@ctwouvya.mailosaur.net");
-        clickable(".//button[@class='btn common-bgBtn w-100 text-center align-items-center justify-content-center']");
-        Thread.sleep(2000);
-        clickable(".//button[@class='btn common-bgBtn w-100 text-center align-items-center justify-content-center']");
-        typingToText_id("nameModern", "name");
+        typingToText_id("nameModern", "Testing");
         typingToText_id("finalEmailModern", "email@gmail.com");
-        typingToText_id("phoneModern", "phone");
+        typingToText_id("mobile_code", "0123456789");
         WebElement BusinessType_dropdown = driver.findElement(By.id("employeeModern"));
         Select BusinessType = new Select(BusinessType_dropdown);
-        BusinessType.selectByIndex(1);
+        BusinessType.selectByVisibleText("Hotelier");
         typingToText_id("propertyModern", "Test");
         WebElement Number_Of_Rooms_dropdown = driver.findElement(By.id("roomsModern"));
         Select Number_Of_Rooms = new Select(Number_Of_Rooms_dropdown);
         Number_Of_Rooms.selectByVisibleText("51 - 100");
         Thread.sleep(2000);
-        typingToText_xpath("//*[@id=\"step3-form-modern\"]/div[6]/div[1]/div/input[2]", "October 29, 2025");
+        typingToText_xpath("//*[@id=\"step3-form-modern\"]/div[7]/div[1]/div/input[2]", "October 29, 2025");
+        typingToText_xpath(".//input[@id='timeModern' and @name='time']", "1111");
+        clickable(".//button[text()='Submit']");
+    }
+
+    @Test
+    public void Pricing_Transporter() throws InterruptedException {
+        clickable(".//a[text()='Pricing']");
+        clickable(".//a[@href='https://www.syncinns.com/for-transporter-pricing']");
+        clickable(".//a[@href='https://www.syncinns.com/hotel-pricing-qoute']");
+        typingToText_id("nameModern", "Testing");
+        typingToText_id("finalEmailModern", "email@gmail.com");
+        typingToText_id("mobile_code", "0123456789");
+        WebElement BusinessType_dropdown = driver.findElement(By.id("employeeModern"));
+        Select BusinessType = new Select(BusinessType_dropdown);
+        BusinessType.selectByVisibleText("Hotelier");
+        typingToText_id("propertyModern", "Test");
+        WebElement Number_Of_Rooms_dropdown = driver.findElement(By.id("roomsModern"));
+        Select Number_Of_Rooms = new Select(Number_Of_Rooms_dropdown);
+        Number_Of_Rooms.selectByVisibleText("51 - 100");
+        Thread.sleep(2000);
+        typingToText_xpath("//*[@id=\"step3-form-modern\"]/div[7]/div[1]/div/input[2]", "October 29, 2025");
+        typingToText_xpath(".//input[@id='timeModern' and @name='time']", "1111");
+        clickable(".//button[text()='Submit']");
+    }
+
+    @Test
+    public void Pricing_Reservation_Agencies() throws InterruptedException {
+        clickable(".//a[text()='Pricing']");
+        clickable(".//a[@href='https://www.syncinns.com/for-transporter-pricing']");
+        clickable(".//a[@href='https://www.syncinns.com/hotel-pricing-qoute']");
+        typingToText_id("nameModern", "Testing");
+        typingToText_id("finalEmailModern", "email@gmail.com");
+        typingToText_id("mobile_code", "0123456789");
+        WebElement BusinessType_dropdown = driver.findElement(By.id("employeeModern"));
+        Select BusinessType = new Select(BusinessType_dropdown);
+        BusinessType.selectByVisibleText("Hotelier");
+        typingToText_id("propertyModern", "Test");
+        WebElement Number_Of_Rooms_dropdown = driver.findElement(By.id("roomsModern"));
+        Select Number_Of_Rooms = new Select(Number_Of_Rooms_dropdown);
+        Number_Of_Rooms.selectByVisibleText("51 - 100");
+        Thread.sleep(2000);
+        typingToText_xpath("//*[@id=\"step3-form-modern\"]/div[7]/div[1]/div/input[2]", "October 29, 2025");
+        typingToText_xpath(".//input[@id='timeModern' and @name='time']", "1111");
+        clickable(".//button[text()='Submit']");
+    }
+
+    @Test
+    public void Pricing_Travel_Agencies() throws InterruptedException {
+        clickable(".//a[text()='Pricing']");
+        clickable(".//a[@href='https://www.syncinns.com/for-travel-agencies-pricing']");
+        clickable(".//a[@href='https://www.syncinns.com/hotel-pricing-qoute']");
+        typingToText_id("nameModern", "Testing");
+        typingToText_id("finalEmailModern", "email@gmail.com");
+        typingToText_id("mobile_code", "0123456789");
+        WebElement BusinessType_dropdown = driver.findElement(By.id("employeeModern"));
+        Select BusinessType = new Select(BusinessType_dropdown);
+        BusinessType.selectByVisibleText("Hotelier");
+        typingToText_id("propertyModern", "Test");
+        WebElement Number_Of_Rooms_dropdown = driver.findElement(By.id("roomsModern"));
+        Select Number_Of_Rooms = new Select(Number_Of_Rooms_dropdown);
+        Number_Of_Rooms.selectByVisibleText("51 - 100");
+        Thread.sleep(2000);
+        typingToText_xpath("//*[@id=\"step3-form-modern\"]/div[7]/div[1]/div/input[2]", "October 29, 2025");
+        typingToText_xpath(".//input[@id='timeModern' and @name='time']", "1111");
+        clickable(".//button[text()='Submit']");
+    }
+
+    @Test
+    public void Pricing_CRS() throws InterruptedException {
+        clickable(".//a[text()='Pricing']");
+        clickable(".//a[@href='https://www.syncinns.com/for-custom-pricing']");
+        clickable(".//a[@href='https://www.syncinns.com/hotel-pricing-qoute']");
+        typingToText_id("nameModern", "Testing");
+        typingToText_id("finalEmailModern", "email@gmail.com");
+        typingToText_id("mobile_code", "0123456789");
+        WebElement BusinessType_dropdown = driver.findElement(By.id("employeeModern"));
+        Select BusinessType = new Select(BusinessType_dropdown);
+        BusinessType.selectByVisibleText("Hotelier");
+        typingToText_id("propertyModern", "Test");
+        WebElement Number_Of_Rooms_dropdown = driver.findElement(By.id("roomsModern"));
+        Select Number_Of_Rooms = new Select(Number_Of_Rooms_dropdown);
+        Number_Of_Rooms.selectByVisibleText("51 - 100");
+        Thread.sleep(2000);
+        typingToText_xpath("//*[@id=\"step3-form-modern\"]/div[7]/div[1]/div/input[2]", "October 29, 2025");
         typingToText_xpath(".//input[@id='timeModern' and @name='time']", "1111");
         clickable(".//button[text()='Submit']");
     }
@@ -246,7 +414,6 @@ public class HomePage_Test extends BrowserActions {
         clickable(".//a[@href='https://www.syncinns.com/partner-with-us']");
         clickable(".//a[@href='https://www.syncinns.com/list-your-property']");
         clickable(".//a[@href='https://www.syncinns.com/registration']");
-
         typingToText_name("name", "Testing");
         typingToText_name("email", "air-lunch@ctwouvya.mailosaur.net");
         typingToText_id("mobile_code", "8788473203");
@@ -255,35 +422,26 @@ public class HomePage_Test extends BrowserActions {
         Thread.sleep(20000);
         //Manually OTP captured by user and proceed then button is automated
         clickable(".//button[text()='proceed']");
-
-
         Thread.sleep(2000);
         clickable(".//h6[text()='Hotel']");
         clickable(".//button[text()='Next']");
-
         WebElement searchbox = driver.findElement(By.id("address"));
         Actions actions = new Actions(driver);
         actions.moveToElement(searchbox).click().sendKeys("Ganeshkhind Rd, Ganeshkhind, Pune, Maharashtra 411007, India");
-
-
         actions.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ENTER).sendKeys(Keys.BACK_SPACE).build().perform();
         Thread.sleep(2000);
         actions.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ENTER).build().perform();
         Thread.sleep(2000);
         actions.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ENTER).build().perform();
-
         typingToText_name("apartment_floor", "3");
         Thread.sleep(2000);
         typingToText_name("zip_code", "411007");
         Thread.sleep(2000);
         clickable("//*[@id=\"pane-2\"]/div/div[1]/div/div[3]/button[2]");
-
         typingToText_name("property_name", "Testing");
         Thread.sleep(2000);
         //what’s the star rating of your Property?
-
         clickable(".//label[@class='wizard-star-rating' and input[@value='3']]//i");
-
         Thread.sleep(2000);
         // are you a property management company or part of a group?*
         WebElement radioVisual = driver.findElement(By.xpath("//input[@value='yes']/following-sibling::span[contains(@class, 'wizard-form-radio-mark')] "));
@@ -291,13 +449,10 @@ public class HomePage_Test extends BrowserActions {
         Thread.sleep(2000);
         //  Next button
         clickable("//*[@id=\"pane-3\"]//button[contains(@class, \"wizard-btn-next\")]");
-
         //Facilities at your property
         clickable(".//input[@name ='facilities[]']/following-sibling::span[@class='wizard-facility-list-item']");
-
         Thread.sleep(4000);
         clickable("//*[@id=\"pane-4\"]//button[contains(@class, 'wizard-btn-next')]");
-
         //Amenities at your property
         Thread.sleep(2000);
         clickable("//*[@id=\"pane-5\"]/div/div[1]/div/div[2]/div/div/div/div/ul/li[11]/div/label/span[1]");
@@ -313,7 +468,6 @@ public class HomePage_Test extends BrowserActions {
         //check-OUT TIME
         driver.findElement(By.name("check_out_time")).click();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
         //WebElement check_Out_Time = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[5]/div//div[(@class='flatpickr-calendar hasTime noCalendar animate arrowLeft arrowTop open')]//div[contains(@class, 'flatpickr-time')]//div[@class='numInputWrapper']/input[@class='numInput flatpickr-hour']")));
         WebElement check_Out_Time = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[5]/div/div[1]/input")));
         time.moveToElement(check_Out_Time).sendKeys("02").sendKeys(Keys.TAB).sendKeys("02").sendKeys(Keys.ENTER).build().perform();
@@ -328,7 +482,6 @@ public class HomePage_Test extends BrowserActions {
         clickable(".//*[@id=\"pane-7\"]//span[contains(text(),'Queen size bedroom')]");
         Thread.sleep(2000);
         typingToText_xpath("//*[@id=\"pane-7\"]//input[@name='rooms[0][no_of_bed]']", "100");
-
         //*[@id="pane-7"]/div/div/div/div[3]/div/div/div/div/div[1]/div[2]/div/div/div[1]/input
         typingToText_xpath("//*[@id=\"pane-7\"]//input[@name='rooms[0][guest_capacity]']", "100");
         WebElement Room_View = driver.findElement(By.xpath(".//*[@id=\"pane-7\"]//select[@name='rooms[0][room_view]']"));
@@ -376,7 +529,7 @@ public class HomePage_Test extends BrowserActions {
         typingToText_id("mobile_code", "8788473203");
         typingToText_id("businessName", "business");
         typingToText_id("businessEmail", "business@gmail.com");
-        typingToText_name("message","Hi, This is a Test!");
+        typingToText_name("message", "Hi, This is a Test!");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         WebElement checkbox = driver.findElement(By.name("terms"));
         checkbox.click();

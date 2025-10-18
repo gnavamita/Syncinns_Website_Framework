@@ -3,7 +3,6 @@ package HomePage;
 import baseClass.BrowserActions;
 import baseClass.BrowserSetUp;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
@@ -29,7 +28,7 @@ public class RequestADemo_Form extends BrowserSetUp {
         browserActions.typingToText_xpath(".//input[@id='timeModern' and @name='time']", Time);
     }
 
-    public void click_On_SUbmit_Button() {
+    public void click_On_Submit_Button() {
         browserActions.clickable(".//button[text()='Submit']");
     }
 }
