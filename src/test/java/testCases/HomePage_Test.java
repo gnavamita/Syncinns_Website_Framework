@@ -1,6 +1,7 @@
 package testCases;
 
-import HomePage.RequestADemo_Form;
+import pageClass.HomePage;
+import pageClass.RequestADemoPage;
 import baseClass.BrowserActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -13,11 +14,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pageClass.TalkToUsPage;
 
 import java.time.Duration;
 
 public class HomePage_Test extends BrowserActions {
-    RequestADemo_Form requestADemoForm = new RequestADemo_Form();
+    RequestADemoPage requestADemoForm = new RequestADemoPage();
+    TalkToUsPage talkToUsPageForm = new TalkToUsPage();
+    HomePage homePage = new HomePage();
 
     @BeforeMethod
     public void openingBrowser() {
@@ -31,22 +35,17 @@ public class HomePage_Test extends BrowserActions {
 
 
     @Test
-    public void Request_a_Demo_Test() { // positive scenario
-        // clickable(".//span[text()='Request a Demo']");
-        requestADemoForm.click_On_Request_A_Demo_Button();
+    public void Request_a_Demo_Test() throws InterruptedException { // positive scenario
+        homePage.click_On_Request_A_Demo_Button();
         requestADemoForm.Fill_Book_A_Free_Demo_Form("Test", "navamitaghosh30@gmail.com", "8788473203", "Hotelier", "Test", "100", "October 29, 2025", "1111");
         requestADemoForm.click_On_Submit_Button();
     }
 
     @Test
     public void Talk_To_us_Test() { // positive scenario
-        clickable(".//span[text()='Talk to Us']");
-        typingToText_name("first_name", "first");
-        typingToText_name("last_name", "last");
-        typingToText_name("work_email", "work@gmail.com");
-        typingToText_name("company_name", "ABC");
-        typingToText_name("message", "Hi, This is a Test!");
-        clickable(".//button[@class='btn btn-primary rounded-2 px-4']");
+        homePage.click_on_Talk_To_US_Button();
+        talkToUsPageForm.Fill_Talk_To_Us_Form("first", "last", "work@gmail.com", "ABC", "Hi, This is a Test!");
+        talkToUsPageForm.Click_On_Send_Message_Button();
     }
 
     @Test
