@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pageClass.SyncinnsAIPage;
 import pageClass.TalkToUsPage;
 
 import java.time.Duration;
@@ -22,6 +23,7 @@ public class HomePage_Test extends BrowserActions {
     RequestADemoPage requestADemoForm = new RequestADemoPage();
     TalkToUsPage talkToUsPageForm = new TalkToUsPage();
     HomePage homePage = new HomePage();
+    SyncinnsAIPage syncinnsAIPage = new SyncinnsAIPage();
 
     @BeforeMethod
     public void openingBrowser() {
@@ -50,22 +52,11 @@ public class HomePage_Test extends BrowserActions {
 
     @Test
     public void Syncinns_AI_Test() throws InterruptedException { // positive scenario
-        clickable(".//a[text()='Syncinns AI']");
-        clickable(".//a[text()='Upgrade with AI']");
-        typingToText_id("nameModern", "Test");
-        typingToText_id("finalEmailModern", "navamitaghosh30@gmail.com");
-        typingToText_id("mobile_code", "8788473203");
-        WebElement BusinessType_dropdown = driver.findElement(By.id("employeeModern"));
-        Select BusinessType = new Select(BusinessType_dropdown);
-        BusinessType.selectByIndex(1);
-        typingToText_id("propertyModern", "Test");
-        WebElement Number_Of_Rooms_dropdown = driver.findElement(By.id("roomsModern"));
-        Select Number_Of_Rooms = new Select(Number_Of_Rooms_dropdown);
-        Number_Of_Rooms.selectByValue("100");
-        Thread.sleep(2000);
-        typingToText_xpath(" //*[@id=\"step3-form-modern\"]/div[6]/div[1]/div/input[2]", "October 29, 2025");
-        typingToText_xpath(".//input[@id='timeModern' and @name='time']", "1111");
-        clickable(".//button[text()='Submit']");
+        homePage.click_On_Syncinns_AI_Button();
+        homePage.click_On_Upgrade_With_AI_Button();
+        syncinnsAIPage.Syncinns_AI("Test","navamitaghosh30@gmail.com","8788473203","Test", "October 29, 2025","1111");
+        requestADemoForm.click_On_Submit_Button();
+
     }
 
     @Test

@@ -27,6 +27,7 @@ public class RequestADemoPage extends BrowserSetUp {
 
     public void click_On_Submit_Button() {
         browserActions.clickable(".//button[text()='Submit']");
+
     }
 
 }
